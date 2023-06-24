@@ -28,6 +28,8 @@ jobs:
 
     - name: Initialize Terraform
       run: terraform init
+      with:
+          tf_actions_working_dir: './terraform/'
 
     - name: Terraform Plan
       run: terraform plan
