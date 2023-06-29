@@ -1,0 +1,9 @@
+[webservers]
+10.0.11.190
+10.0.8.179
+
+[pri-webserver]
+10.0.11.190
+
+[sec-webserver]
+10.0.8.179
