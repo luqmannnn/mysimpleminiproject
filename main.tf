@@ -53,7 +53,8 @@ resource "aws_instance" "ansible_server" {
   }
 }
 
-resource "aws_instance" "web_server_1" {
+resource "aws_instance" "web_servers" {
+  count         = 2
   ami           = "ami-07650ecb0de9bd731"
   instance_type = "t2.micro"
   key_name      = "luqman-london"
@@ -62,20 +63,7 @@ resource "aws_instance" "web_server_1" {
   vpc_security_group_ids = [aws_security_group.my_security_group_2.id]
 
   tags = {
-    Name = "webserver-1"
-  }
-}
-
-resource "aws_instance" "web_server_2" {
-  ami           = "ami-07650ecb0de9bd731"
-  instance_type = "t2.micro"
-  key_name      = "luqman-london"
-  subnet_id     = data.aws_subnet.existing_subnet.id
-  associate_public_ip_address = true
-  vpc_security_group_ids = [aws_security_group.my_security_group_2.id]
-
-  tags = {
-    Name = "webserver-2"
+    Name = "webserver-${count.index + 1}"
   }
 }
 
